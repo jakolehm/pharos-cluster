@@ -44,6 +44,7 @@ module Pharos
 
     option '--insecure-registry', '[REGISTRY]', 'insecure registry (can be given multipled times)', multivalued: true
     option '--image-repository', '[IMAGE_REPOSITORY]', 'image repository', default: 'registry.pharos.sh/kontenapharos'
+    option '--skip-host-repo', :flag, 'skip host package repo add', default: false
     option '--cloud-provider', '[NAME]', 'cloud provider'
     option '--container-runtime', '[CONTAINER_RUNTIME]', 'container runtime', default: 'docker'
     option '--label', '[key=value]', 'node label (can be given multiple times)', multivalued: true do |label|
@@ -73,6 +74,7 @@ module Pharos
         options[:container_runtime] = container_runtime
         options[:labels] = label_list.map { |l| l.split('=') }.to_h
         options[:environment] = @env if @env
+        options[:repositories] = [] if skip_host_repo
       end
     end
 
