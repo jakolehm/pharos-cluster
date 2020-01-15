@@ -74,7 +74,7 @@ module Pharos
         options[:container_runtime] = container_runtime
         options[:labels] = label_list.map { |l| l.split('=') }.to_h
         options[:environment] = @env if @env
-        options[:repositories] = [] if skip_host_repo
+        options[:repositories] = [] if skip_host_repo?
       end
     end
 
